@@ -20,45 +20,30 @@
     <button @click="changeReportCount()">허위매물신고</button>
     <span>신고수 : {{ ReportCount }}</span>
   </div> -->
+
   <div>
     <h1>원룸샵</h1>
-    <div>
-      <img src="./assets/roomOne.jpg" alt="" srcset="" class="room_img" />
-      <h4 @click="changeModalState()">{{ room[0] }} 원룸</h4>
-      <p>{{ price[0] }} 만원</p>
-      <button @click="changeOneReportCount()">허위매물신고</button>
-      <span>신고수 : {{ ReportCount }}</span>
-    </div>
-    <div>
-      <img src="./assets/roomTwo.jpeg" alt="" srcset="" class="room_img" />
-      <h4 @click="changeModalState()">{{ room[1] }} 원룸</h4>
-      <p>{{ price[1] }} 만원</p>
-      <button @click="changTwoReportCount()">허위매물신고</button>
-      <span>신고수 : {{ ReportCountTwo }}</span>
+    <div v-for="(Room, arr) in room" :key="arr">
+      <img :src="room[arr].image" class="room_img" />
+      <h4 @click="changeModalState()">{{ room[arr]?.title }} 원룸</h4>
+      <p>{{ room[arr]?.price }}원</p>
     </div>
   </div>
 </template>
 
 <script>
+import data from "./assets/post";
+
 export default {
   name: "App",
   data() {
     return {
-      room: ["준하우스", "비닐하우스"],
-      price: [50, 100],
+      room: data,
       menudata: ["Home", "About", "Login"],
-      ReportCount: 0,
-      ReportCountTwo: 0,
       ModalState: false,
     };
   },
   methods: {
-    changeOneReportCount() {
-      this.ReportCount += 1;
-    },
-    changTwoReportCount() {
-      this.ReportCountTwo += 1;
-    },
     changeModalState() {
       this.ModalState = !this.ModalState;
     },
