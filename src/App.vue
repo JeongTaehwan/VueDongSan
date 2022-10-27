@@ -1,16 +1,14 @@
 <template>
   <div class="menu">
-    <a v-for="Menu in menudata" :key="Menu">{{ Menu }}</a>
+    <a v-for="(Menu, arr) in menudata" :key="arr">{{ Menu }}</a>
   </div>
 
   <div>
-    원룸샵
-    <h4>{{ room[0] }} 원룸</h4>
-    <p>{{ price[0] }} 만원</p>
-  </div>
-  <div>
-    <h4>{{ room[1] }} 원룸</h4>
-    <p>{{ price[1] }} 만원</p>
+    <h1>원룸샵</h1>
+    <div v-for="(Room, arr) in room" :key="arr">
+      <h4>{{ Room }} 원룸</h4>
+      <p>{{ price[arr] }} 만원</p>
+    </div>
   </div>
 </template>
 
@@ -34,7 +32,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 .menu {
